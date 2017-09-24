@@ -1,9 +1,4 @@
-let month = "-800"
-let day = "-13000"
-let year = "-20990"
-
 function addColor(className, rgb){
-  console.log(className, rgb)
   divs = document.getElementsByClassName(className)
   for (i = 0; i < divs.length; i++) {
     divs[i].style.backgroundColor = rgb;
@@ -41,9 +36,8 @@ function convertYearSecond(year){
 
 function bodyColor(day, month, year){
   first = day + 200
-  second = month + 200
-  third = year + 100
-  console.log('body', `rgb(${first}, ${second}, ${third})`)
+  second = month + 210
+  third = year < 80 ? 255 : 255 - year
   document.body.style.backgroundColor = `rgb(${first}, ${second}, ${third})`
 }
 
@@ -74,7 +68,21 @@ function calcDay(day){
   return num < 0 || num > 31 ? 28 : num
 }
 
-window.onload = () => {
+function addFormListener(){
+  let form = document.getElementById("form")
+  form.addEventListener("submit", handleSubmit)
+}
+
+function handleSubmit(event){
+  event.preventDefault()
+  date = document.getElementById("date").value.split("-")
+  let year = date[0]
+  let month = date[1]
+  let day = date[2]
+  changeCSS(year, month, day)
+}
+
+function changeCSS(year, month, day){
   let yearFirst = calcYearFirst(year)
   let yearSecond = calcYearSecond(year)
   let monthInt = calcMonth(month)
@@ -83,6 +91,12 @@ window.onload = () => {
   addColor("color2", convertDay(dayInt))
   addColor("color3", convertYearFirst(yearFirst))
   addColor("color4", convertYearSecond(yearSecond))
-  bodyColor(day, month, yearSecond)
+  bodyColor(dayInt, monthInt, yearSecond)
   addTemplate(dayInt, monthInt)
+}
+
+window.onload = () => {
+  changeCSS(year = "2000", month = "6", day = "30")
+  addFormListener()
+
 }

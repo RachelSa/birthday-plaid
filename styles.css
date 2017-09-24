@@ -2,20 +2,26 @@ body, html {
 height: 100%;
 }
 
+form {
+  display: inline;
+}
+
+input {
+  background-color: rgb(255, 230, 255);
+  color: rgb(0, 153, 153);
+}
+
 #wrapper {
   display: grid;
-  /*grid-template-columns: 10px 1fr 50px 2fr 10px 1fr 50px 2fr;*/
-  /*grid-template-rows:10px 1fr 50px 2fr 10px 1fr 50px 2fr ;*/
   grid-gap: 10px;
   height: auto;
   min-height: 100%;
 }
 
-/*grid-row-start: auto --
-grid-column-start: auto |
-grid-row-end: auto
-grid-column-end: auto*/
-
+#greeting {
+  font-family: "Courier New", Courier, monospace;
+  color: rgb(0, 153, 153);
+}
 
 .a1 {
   grid-area: 1 / 1 / 1 / 9;
